@@ -1,2 +1,2 @@
-# client-project
-Proyecto donde se aplica varios conceptos de SpringBoot
+# springboot-ms-cliente-foto
+Proyecto donde se aplica varios conceptos de microservicios de SpringBoot y SpringCloud
