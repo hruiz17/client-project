@@ -1,0 +1,8 @@
+
+include 'cliente-service'
+include 'foto-service'
+include 'config-service'
+include 'registry-service'
+include 'gateway-service'
+include 'admin-service'
+rootProject.name = 'springboot-ms-cliente-foto'
