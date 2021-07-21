@@ -1,7 +1,7 @@
 
 include 'cliente-service'
 include 'foto-service'
-include 'config-service'
+include 'configuracion-service'
 include 'registry-service'
 include 'gateway-service'
 include 'admin-service'
