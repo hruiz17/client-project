@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import co.com.cliente.model.TipoDocumento;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 /**
  * Clase para el manejo de Cliente (Entidad)
@@ -18,12 +21,11 @@ import co.com.cliente.model.TipoDocumento;
  * @since 1.0
  */
 @Entity
-@Data
-@NoArgsConstructor
 @Table(name = "CLIENTE",
         indexes = {@Index(name = "identificacion", columnList = "ID_TIPO_DOCUMENTO,NUMERO_DOCUMENTO", unique = true)}
 )
-
+@Data
+@AllArgsConstructor @NoArgsConstructor @Builder
 public class Cliente implements Serializable {
 
   private static final long serialVersionUID = -254747720094795954L;

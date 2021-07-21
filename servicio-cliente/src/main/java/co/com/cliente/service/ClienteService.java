@@ -1,9 +1,12 @@
 package co.com.cliente.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +21,10 @@ import co.com.cliente.util.IConstantes;
  * @since 1.0
  */
 @Service
+@RequiredArgsConstructor
 public class ClienteService {
 
-  private IClienteRepository clienteRepository;
+  private final IClienteRepository clienteRepository;
 
   // Metodos publicos
 
@@ -63,18 +67,12 @@ public class ClienteService {
 
   private void validateCliente(Cliente aCliente, String aModoTransaction) {
     // Nombre mayuscula sostenida
-    aCliente.setNombres(aCliente.getNombres().trim().toUpperCase());
+    //aCliente.setNombres(aCliente.getNombres().trim().toUpperCase());
 
   }
 
   public String helloWorld() {
     return "Hola Mundo";
-  }
-
-  // inyeccion
-  @Autowired
-  public void setClienteRepository(IClienteRepository clienteRepository) {
-    this.clienteRepository = clienteRepository;
   }
 
 }

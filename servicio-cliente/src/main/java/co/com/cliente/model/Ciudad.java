@@ -9,7 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Clase para el manejo de Ciudad (Entidad)
@@ -18,8 +21,8 @@ import lombok.Data;
  * @since 1.0
  */
 @Entity
-@Data
 @Table(name = "CIUDAD")
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class Ciudad implements Serializable {
 
   private static final long serialVersionUID = -6784613421222592000L;
