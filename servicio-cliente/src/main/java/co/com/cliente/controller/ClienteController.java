@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import co.com.cliente.client.FotoCliente;
 import co.com.cliente.util.IConstantes;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -41,9 +42,22 @@ public class ClienteController {
 
 	private ClienteService clienteService;
 
+
+
 	@Autowired
 	public ClienteController(ClienteService clienteService) {
 		this.clienteService = clienteService;
+	}
+
+	@GetMapping("/tipo-documento/{idTipo}/numero-documento/{idDocumento}")
+	@ApiOperation(value = "findByIdClienteAndIdTipoDocumento", notes = IConstantes.CLIENTE_FIND_BY_DOCUMENTO_AND_ID_TIPO_DOCUMENTO)
+	@ApiResponses({ @ApiResponse(code = HttpServletResponse.SC_OK, message = IConstantes.OK),
+					@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = IConstantes.INTERNAL_SERVER_ERROR),
+					@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = IConstantes.UNAUTHORIZED),
+					@ApiResponse(code = HttpServletResponse.SC_FORBIDDEN, message = IConstantes.FORBIDDEN),
+					@ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = IConstantes.NOT_FOUND) })
+	public ResponseEntity<ClienteDTO> findByIdTipoDocumentoAndDocumento(@PathVariable(value = "idTipo") Long aIdTipo, @PathVariable(value = "idDocumento") Long aIdDocumento) {
+		return this.clienteService.findByIdTipoDocumentoAndDocumento(aIdTipo, aIdDocumento);
 	}
 
 	@GetMapping
@@ -77,21 +91,6 @@ public class ClienteController {
 		return new ResponseEntity<>(ClienteMapper.INSTANCE.toClienteDTO(cliente), HttpStatus.OK);
 	}
 
-	@GetMapping("/tipo-documento/{idTipo}/numero-documento/{idDocumento}")
-	@ApiOperation(value = "findByIdClienteAndIdTipoDocumento", notes = IConstantes.CLIENTE_FIND_BY_DOCUMENTO_AND_ID_TIPO_DOCUMENTO)
-	@ApiResponses({ @ApiResponse(code = HttpServletResponse.SC_OK, message = IConstantes.OK),
-					@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = IConstantes.INTERNAL_SERVER_ERROR),
-					@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = IConstantes.UNAUTHORIZED),
-					@ApiResponse(code = HttpServletResponse.SC_FORBIDDEN, message = IConstantes.FORBIDDEN),
-					@ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = IConstantes.NOT_FOUND) })
-	public ResponseEntity<ClienteDTO> findByIdTipoDocumentoAndDocumento(@PathVariable(value = "idTipo") Long aIdTipo, @PathVariable(value = "idDocumento") Long aIdDocumento) {
-		Cliente cliente = this.clienteService.findByIdTipoDocumentoAndDocumento(aIdTipo, aIdDocumento);
-		if (cliente == null) {
-			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<>(ClienteMapper.INSTANCE.toClienteDTO(cliente), HttpStatus.OK);
-	}
-
 	@GetMapping("/mayorOIgualA/{edad}")
 	public ResponseEntity<List<ClienteDTO>> findByEdadGreaterThan(@PathVariable ("edad") Integer aEdad) {
 		List<Cliente> clienteList = this.clienteService.findByEdadGreaterThanEqual(aEdad);
@@ -101,7 +100,6 @@ public class ClienteController {
 		return new ResponseEntity<>(
 						clienteList.stream().map(ClienteMapper.INSTANCE::toClienteDTO).collect(Collectors.toList()), HttpStatus.OK);
 	}
-
 
 	@PostMapping
 	public ResponseEntity<ClienteDTO> createCliente(@Valid @RequestBody ClienteDTO aClienteDTO) {
@@ -127,11 +125,6 @@ public class ClienteController {
 	public ResponseEntity<Boolean> deleteCliente(@PathVariable(value = "id") Long aId) {
 		this.clienteService.deleteCliente(aId);
 		return new ResponseEntity<>(true, HttpStatus.OK);
-	}
-
-	@GetMapping("/hello")
-	public ResponseEntity sayHello() {
-		return ResponseEntity.ok(this.clienteService.helloWorld());
 	}
 
 // **-------------

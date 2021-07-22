@@ -29,4 +29,5 @@ public class ClienteDTO implements Serializable {
 	private String						idFoto;
 	private String						nombreTipoDocumento;
 	private String						nombreCiudadNacimiento;
+	private String            foto;
 }

@@ -1,5 +1,6 @@
 package co.com.cliente;
 
+import co.com.cliente.dto.ClienteDTO;
 import co.com.cliente.model.Cliente;
 import co.com.cliente.repository.IClienteRepository;
 import co.com.cliente.service.ClienteService;
@@ -10,6 +11,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
@@ -39,8 +42,8 @@ public class ClienteServiceMockTest {
 
   @Test
   public void whenValidGetID_ThenReturnCliente(){
-    Cliente found = clienteService.findByIdTipoDocumentoAndDocumento(1L,647584145L);
-    Assertions.assertThat(found.getNombres()).isEqualTo("Pedro");
+    ResponseEntity<ClienteDTO> found = clienteService.findByIdTipoDocumentoAndDocumento(1L,647584145L);
+    Assertions.assertThat(found.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
   @Test

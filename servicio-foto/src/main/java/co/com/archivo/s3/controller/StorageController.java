@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Base64;
+
 
 @RestController
 @RequestMapping("/file")
@@ -33,8 +35,20 @@ public class StorageController {
             .body(resource);
   }
 
+  @GetMapping("/download/base64/{fileName}")
+  public ResponseEntity<String> downloadBase64File(@PathVariable String fileName) {
+    byte[] data = service.downloadFile(fileName);
+    String base64 = Base64.getEncoder().encodeToString(data);
+    return new ResponseEntity<>(base64, HttpStatus.OK);
+  }
+
   @DeleteMapping("/delete/{fileName}")
   public ResponseEntity<String> deleteFile(@PathVariable String fileName) {
     return new ResponseEntity<>(service.deleteFile(fileName), HttpStatus.OK);
+  }
+
+  @GetMapping("/holaMundo")
+  public ResponseEntity<String> holaMundo(){
+    return new ResponseEntity<>("Hola mundo!!!", HttpStatus.OK);
   }
 }
