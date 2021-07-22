@@ -1,0 +1,51 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'co.com.servicio-foto'
+version = '1.0'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2020.0.3")
+	set('springBootAdminVersion', "2.3.1")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '3.0.4'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '3.0.3'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.5.1'
+	implementation 'de.codecentric:spring-boot-admin-starter-client'
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
+	implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.486'
+
+}
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
