@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'co.com.servicio-cliente'
+group = 'co.com.cliente'
 version = '1.0'
 sourceCompatibility = '11'
 
@@ -29,6 +29,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation group: 'commons-io', name: 'commons-io', version: '2.6'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '3.0.4'
@@ -44,7 +45,6 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
 }
 
