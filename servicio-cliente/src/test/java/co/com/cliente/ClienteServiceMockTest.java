@@ -39,7 +39,7 @@ public class ClienteServiceMockTest {
 
   @Test
   public void whenValidGetID_ThenReturnCliente(){
-    Cliente found = clienteService.findByIdClienteAndIdTipoDocumento(1L,647584145L);
+    Cliente found = clienteService.findByIdTipoDocumentoAndDocumento(1L,647584145L);
     Assertions.assertThat(found.getNombres()).isEqualTo("Pedro");
   }
 

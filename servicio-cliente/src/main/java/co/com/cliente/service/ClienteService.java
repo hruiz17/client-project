@@ -32,7 +32,7 @@ public class ClienteService {
     return this.clienteRepository.findById(aId).orElse(null);
   }
 
-  public Cliente findByIdClienteAndIdTipoDocumento(Long aIdTipoDocumento, Long aIdNumeroDocumento) {
+  public Cliente findByIdTipoDocumentoAndDocumento(Long aIdTipoDocumento, Long aIdNumeroDocumento) {
     return this.clienteRepository.findByIdTipoDocumentoAndNumeroDocumento(aIdTipoDocumento,aIdNumeroDocumento);
   }
 
