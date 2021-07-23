@@ -24,8 +24,9 @@ public class ClienteServiceMockTest {
 
   private ClienteService clienteService;
 
-  @BeforeEach
-  public void setup(){
+
+  @Test
+  public void whenValidGetID_ThenReturnCliente(){
     MockitoAnnotations.initMocks(this);
     clienteService = new ClienteService(clienteRepository);
     Cliente cliente = Cliente.builder()
@@ -36,14 +37,8 @@ public class ClienteServiceMockTest {
             .idTipoDocumento(1L)
             .numeroDocumento(647584145L).build();
 
-    Mockito.when(clienteRepository.findByIdTipoDocumentoAndNumeroDocumento(1L,647584145L))
-            .thenReturn(cliente);
-  }
-
-  @Test
-  public void whenValidGetID_ThenReturnCliente(){
     ResponseEntity<ClienteDTO> found = clienteService.findByIdTipoDocumentoAndDocumento(1L,647584145L);
-    Assertions.assertThat(found.getStatusCode()).isEqualTo(HttpStatus.OK);
+    Assertions.assertThat(found.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
   }
 
   @Test

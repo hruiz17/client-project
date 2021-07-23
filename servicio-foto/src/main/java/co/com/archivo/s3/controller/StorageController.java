@@ -38,6 +38,7 @@ public class StorageController {
   @GetMapping("/download/base64/{fileName}")
   public ResponseEntity<String> downloadBase64File(@PathVariable String fileName) {
     byte[] data = service.downloadFile(fileName);
+    // byte[] to base64 encoded string
     String base64 = Base64.getEncoder().encodeToString(data);
     return new ResponseEntity<>(base64, HttpStatus.OK);
   }
@@ -47,8 +48,7 @@ public class StorageController {
     return new ResponseEntity<>(service.deleteFile(fileName), HttpStatus.OK);
   }
 
-  @GetMapping("/holaMundo")
-  public ResponseEntity<String> holaMundo(){
-    return new ResponseEntity<>("Hola mundo!!!", HttpStatus.OK);
-  }
+  // base64 encoded string to byte[]
+  //  byte[] decode = Base64.getDecoder().decode(s);
+
 }

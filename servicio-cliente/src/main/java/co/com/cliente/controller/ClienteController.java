@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import co.com.cliente.client.FotoCliente;
 import co.com.cliente.util.IConstantes;
+import co.com.cliente.util.IMensajes;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -50,23 +51,23 @@ public class ClienteController {
 	}
 
 	@GetMapping("/tipo-documento/{idTipo}/numero-documento/{idDocumento}")
-	@ApiOperation(value = "findByIdClienteAndIdTipoDocumento", notes = IConstantes.CLIENTE_FIND_BY_DOCUMENTO_AND_ID_TIPO_DOCUMENTO)
-	@ApiResponses({ @ApiResponse(code = HttpServletResponse.SC_OK, message = IConstantes.OK),
-					@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = IConstantes.INTERNAL_SERVER_ERROR),
-					@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = IConstantes.UNAUTHORIZED),
-					@ApiResponse(code = HttpServletResponse.SC_FORBIDDEN, message = IConstantes.FORBIDDEN),
-					@ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = IConstantes.NOT_FOUND) })
+	@ApiOperation(value = "findByIdClienteAndIdTipoDocumento", notes = IMensajes.CLIENTE_FIND_BY_DOCUMENTO_AND_ID_TIPO_DOCUMENTO)
+	@ApiResponses({ @ApiResponse(code = HttpServletResponse.SC_OK, message = IMensajes.OK),
+					@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = IMensajes.INTERNAL_SERVER_ERROR),
+					@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = IMensajes.UNAUTHORIZED),
+					@ApiResponse(code = HttpServletResponse.SC_FORBIDDEN, message = IMensajes.FORBIDDEN),
+					@ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = IMensajes.NOT_FOUND) })
 	public ResponseEntity<ClienteDTO> findByIdTipoDocumentoAndDocumento(@PathVariable(value = "idTipo") Long aIdTipo, @PathVariable(value = "idDocumento") Long aIdDocumento) {
 		return this.clienteService.findByIdTipoDocumentoAndDocumento(aIdTipo, aIdDocumento);
 	}
 
 	@GetMapping
-	@ApiOperation(value = "findAll", notes = IConstantes.CLIENTE_FIND_ALL)
-	@ApiResponses({ @ApiResponse(code = HttpServletResponse.SC_OK, message = IConstantes.OK),
-					@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = IConstantes.INTERNAL_SERVER_ERROR),
-					@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = IConstantes.UNAUTHORIZED),
-					@ApiResponse(code = HttpServletResponse.SC_FORBIDDEN, message = IConstantes.FORBIDDEN),
-					@ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = IConstantes.NOT_FOUND) })
+	@ApiOperation(value = "findAll", notes = IMensajes.CLIENTE_FIND_ALL)
+	@ApiResponses({ @ApiResponse(code = HttpServletResponse.SC_OK, message = IMensajes.OK),
+					@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = IMensajes.INTERNAL_SERVER_ERROR),
+					@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = IMensajes.UNAUTHORIZED),
+					@ApiResponse(code = HttpServletResponse.SC_FORBIDDEN, message = IMensajes.FORBIDDEN),
+					@ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = IMensajes.NOT_FOUND) })
 	public ResponseEntity<List<ClienteDTO>> findAll() {
 		List<Cliente> clienteList = this.clienteService.findAll();
 		if (clienteList == null || clienteList.isEmpty()) {
@@ -77,12 +78,12 @@ public class ClienteController {
 	}
 
 	@GetMapping("/{id}")
-	@ApiOperation(value = "findById", notes = IConstantes.CLIENTE_FIND_BY_ID)
-	@ApiResponses({ @ApiResponse(code = HttpServletResponse.SC_OK, message = IConstantes.OK),
-					@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = IConstantes.INTERNAL_SERVER_ERROR),
-					@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = IConstantes.UNAUTHORIZED),
-					@ApiResponse(code = HttpServletResponse.SC_FORBIDDEN, message = IConstantes.FORBIDDEN),
-					@ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = IConstantes.NOT_FOUND) })
+	@ApiOperation(value = "findById", notes = IMensajes.CLIENTE_FIND_BY_ID)
+	@ApiResponses({ @ApiResponse(code = HttpServletResponse.SC_OK, message = IMensajes.OK),
+					@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = IMensajes.INTERNAL_SERVER_ERROR),
+					@ApiResponse(code = HttpServletResponse.SC_UNAUTHORIZED, message = IMensajes.UNAUTHORIZED),
+					@ApiResponse(code = HttpServletResponse.SC_FORBIDDEN, message = IMensajes.FORBIDDEN),
+					@ApiResponse(code = HttpServletResponse.SC_NOT_FOUND, message = IMensajes.NOT_FOUND) })
 	public ResponseEntity<ClienteDTO> findById(@PathVariable(value = "id") Long aId) {
 		Cliente cliente = this.clienteService.findById(aId);
 		if (cliente == null) {

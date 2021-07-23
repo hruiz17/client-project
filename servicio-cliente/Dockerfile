@@ -1,4 +1,4 @@
 FROM openjdk:11-jdk-slim
-COPY "./build/libs/service-customer-0.0.1-SNAPSHOT.jar" "service-customer.jar"
-EXPOSE 8088
-ENTRYPOINT ["java","-jar","service-customer.jar"]
+COPY "./build/libs/servicio-cliente-1.0.jar" "servicio-cliente-1.0.jar"
+EXPOSE 8095
+ENTRYPOINT ["java","-jar","servicio-cliente-1.0.jar"]
